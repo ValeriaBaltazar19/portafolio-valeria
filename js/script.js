@@ -1,15 +1,59 @@
 const GITHUB_USER = "ValeriaBaltazar19";
 
 const fallbackRepos = [
-  { name: "portafolio-sisters", description: "Repositorio público desarrollado como parte de mi práctica en frontend y publicación web.", language: "HTML", html_url: "https://github.com/ValeriaBaltazar19/portafolio-sisters", updated_at: "2026-06-13T00:00:00Z", stargazers_count: 0 },
-  { name: "demo_crud_spring", description: "Aplicación orientada a operaciones CRUD para el registro, administración y consulta de información.", language: "HTML", html_url: "https://github.com/ValeriaBaltazar19/demo_crud_spring", updated_at: "2025-10-04T00:00:00Z", stargazers_count: 0 },
-  { name: "Bot-Asistente-de-Consultas", description: "Bot desarrollado en Python para automatizar respuestas y ejecutar flujos de consulta.", language: "Python", html_url: "https://github.com/ValeriaBaltazar19/Bot-Asistente-de-Consultas", updated_at: "2025-09-12T00:00:00Z", stargazers_count: 0 },
-  { name: "Minimarket", description: "Sistema administrativo desarrollado en C# para apoyar el control de productos y procesos.", language: "C#", html_url: "https://github.com/ValeriaBaltazar19/Minimarket", updated_at: "2025-04-28T00:00:00Z", stargazers_count: 0 },
-  { name: "Libro", description: "Proyecto web enfocado en presentación de contenido, estructura visual y organización de información.", language: "HTML", html_url: "https://github.com/ValeriaBaltazar19/Libro", updated_at: "2025-04-02T00:00:00Z", stargazers_count: 0 },
-  { name: "RotarAI", description: "Sitio web con enfoque visual y uso de estilos personalizados para practicar maquetación.", language: "CSS", html_url: "https://github.com/ValeriaBaltazar19/RotarAI", updated_at: "2025-04-01T00:00:00Z", stargazers_count: 0 }
+  {
+    name: "portafolio-sisters",
+    description: "Repositorio público desarrollado como parte de mi práctica en frontend y publicación web.",
+    language: "HTML",
+    html_url: "https://github.com/ValeriaBaltazar19/portafolio-sisters",
+    updated_at: "2026-06-13T00:00:00Z",
+    stargazers_count: 0
+  },
+  {
+    name: "demo_crud_spring",
+    description: "Aplicación orientada a operaciones CRUD para el registro, administración y consulta de información.",
+    language: "HTML",
+    html_url: "https://github.com/ValeriaBaltazar19/demo_crud_spring",
+    updated_at: "2025-10-04T00:00:00Z",
+    stargazers_count: 0
+  },
+  {
+    name: "Bot-Asistente-de-Consultas",
+    description: "Bot desarrollado en Python para automatizar respuestas y ejecutar flujos de consulta.",
+    language: "Python",
+    html_url: "https://github.com/ValeriaBaltazar19/Bot-Asistente-de-Consultas",
+    updated_at: "2025-09-12T00:00:00Z",
+    stargazers_count: 0
+  },
+  {
+    name: "Minimarket",
+    description: "Sistema administrativo desarrollado en C# para apoyar el control de productos y procesos.",
+    language: "C#",
+    html_url: "https://github.com/ValeriaBaltazar19/Minimarket",
+    updated_at: "2025-04-28T00:00:00Z",
+    stargazers_count: 0
+  },
+  {
+    name: "Libro",
+    description: "Proyecto web enfocado en presentación de contenido, estructura visual y organización de información.",
+    language: "HTML",
+    html_url: "https://github.com/ValeriaBaltazar19/Libro",
+    updated_at: "2025-04-02T00:00:00Z",
+    stargazers_count: 0
+  },
+  {
+    name: "RotarAI",
+    description: "Sitio web con enfoque visual y uso de estilos personalizados para practicar maquetación.",
+    language: "CSS",
+    html_url: "https://github.com/ValeriaBaltazar19/RotarAI",
+    updated_at: "2025-04-01T00:00:00Z",
+    stargazers_count: 0
+  }
 ];
 
-const customDescriptions = Object.fromEntries(fallbackRepos.map(repo => [repo.name, repo.description]));
+const customDescriptions = Object.fromEntries(
+  fallbackRepos.map(repo => [repo.name, repo.description])
+);
 
 const projectsGrid = document.getElementById("projectsGrid");
 const menuToggle = document.getElementById("menuToggle");
@@ -28,8 +72,13 @@ function getTheme() {
 
 function updateThemeButton(theme) {
   if (!themeToggle) return;
+
   const isDark = theme === "dark";
-  themeToggle.setAttribute("aria-label", isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro");
+  themeToggle.setAttribute(
+    "aria-label",
+    isDark ? "Cambiar a modo claro" : "Cambiar a modo oscuro"
+  );
+
   if (themeIcon) themeIcon.textContent = isDark ? "☀️" : "🌙";
   if (themeText) themeText.textContent = isDark ? "Claro" : "Oscuro";
 }
@@ -71,14 +120,25 @@ function sanitize(text = "") {
 
 function formatDate(dateString) {
   if (!dateString) return "Sin fecha";
-  return new Intl.DateTimeFormat("es-PE", { year: "numeric", month: "short", day: "numeric" }).format(new Date(dateString));
+
+  return new Intl.DateTimeFormat("es-PE", {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  }).format(new Date(dateString));
 }
 
 function renderRepos(repos) {
   if (!projectsGrid) return;
+
   projectsGrid.innerHTML = repos.map((repo) => {
-    const description = customDescriptions[repo.name] || repo.description || "Repositorio público desarrollado como parte de mi práctica en software.";
+    const description =
+      customDescriptions[repo.name] ||
+      repo.description ||
+      "Repositorio público desarrollado como parte de mi práctica en software.";
+
     const language = repo.language || "Proyecto";
+
     return `
       <article class="project-card reveal visible">
         <div class="project-top">
@@ -91,7 +151,10 @@ function renderRepos(repos) {
           <span>★ ${repo.stargazers_count ?? 0}</span>
         </div>
         <div class="project-actions">
-          <a href="${repo.html_url}" target="_blank" rel="noopener">Código <svg class="svg-icon"><use href="#i-external"></use></svg></a>
+          <a href="${repo.html_url}" target="_blank" rel="noopener">
+            Código
+            <svg class="svg-icon"><use href="#i-external"></use></svg>
+          </a>
         </div>
       </article>
     `;
@@ -100,11 +163,20 @@ function renderRepos(repos) {
 
 async function loadGithubRepos() {
   if (!projectsGrid) return;
+
   try {
-    const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=100`);
+    const response = await fetch(
+      `https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=100`
+    );
+
     if (!response.ok) throw new Error("No se pudo conectar con GitHub");
+
     const repos = await response.json();
-    const publicRepos = repos.filter((repo) => !repo.fork).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+    const publicRepos = repos
+      .filter((repo) => !repo.fork)
+      .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
     renderRepos(publicRepos.length ? publicRepos : fallbackRepos);
   } catch (error) {
     renderRepos(fallbackRepos);
@@ -113,10 +185,12 @@ async function loadGithubRepos() {
 
 function initRevealAnimations() {
   const elements = document.querySelectorAll(".reveal");
+
   if (!("IntersectionObserver" in window)) {
     elements.forEach((element) => element.classList.add("visible"));
     return;
   }
+
   const observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -125,35 +199,54 @@ function initRevealAnimations() {
       }
     });
   }, { threshold: 0.14 });
+
   elements.forEach((element) => observer.observe(element));
 }
 
 function initBackToTop() {
   if (!backToTop) return;
+
   window.addEventListener("scroll", () => {
     backToTop.classList.toggle("show", window.scrollY > 460);
   });
+
   backToTop.addEventListener("click", () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
   });
 }
 
 function initActiveNav() {
   const sections = [...document.querySelectorAll("main section[id], main[id]")];
   const links = [...document.querySelectorAll(".nav-links a")];
+
   if (!sections.length || !links.length || !("IntersectionObserver" in window)) return;
+
   const map = new Map();
+
   links.forEach((link) => {
     const id = link.getAttribute("href")?.replace("#", "");
     if (id) map.set(id, link);
   });
+
   const observer = new IntersectionObserver((entries) => {
-    const active = entries.filter((entry) => entry.isIntersecting).sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+    const active = entries
+      .filter((entry) => entry.isIntersecting)
+      .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+
     if (!active) return;
+
     links.forEach((link) => link.classList.remove("active"));
+
     const link = map.get(active.target.id);
     if (link) link.classList.add("active");
-  }, { rootMargin: "-25% 0px -60% 0px", threshold: [0.18, 0.35, 0.55] });
+  }, {
+    rootMargin: "-25% 0px -60% 0px",
+    threshold: [0.18, 0.35, 0.55]
+  });
+
   sections.forEach((section) => observer.observe(section));
 }
 
