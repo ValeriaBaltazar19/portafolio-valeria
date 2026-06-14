@@ -1,150 +1,277 @@
-const GITHUB_USER = 'ValeriaBaltazar19';
+const GITHUB_USER = "ValeriaBaltazar19";
 
 const fallbackRepos = [
-  { name: 'demo_crud_spring', description: 'Aplicación orientada a operaciones CRUD para registrar, administrar y consultar información en un entorno web.', language: 'HTML', html_url: 'https://github.com/ValeriaBaltazar19/demo_crud_spring', updated_at: '2025-10-04T00:00:00Z', stargazers_count: 0 },
-  { name: 'Bot-Asistente-de-Consultas', description: 'Bot desarrollado en Python para automatizar respuestas y ejecutar flujos de consulta de manera eficiente.', language: 'Python', html_url: 'https://github.com/ValeriaBaltazar19/Bot-Asistente-de-Consultas', updated_at: '2025-09-12T00:00:00Z', stargazers_count: 0 },
-  { name: 'Minimarket', description: 'Sistema administrativo desarrollado en C# para apoyar el control de productos, operaciones y procesos de un minimarket.', language: 'C#', html_url: 'https://github.com/ValeriaBaltazar19/Minimarket', updated_at: '2025-04-28T00:00:00Z', stargazers_count: 0 },
-  { name: 'Libro', description: 'Proyecto web enfocado en la presentación de contenido, estructura de interfaz y experiencia visual.', language: 'HTML', html_url: 'https://github.com/ValeriaBaltazar19/Libro', updated_at: '2025-04-02T00:00:00Z', stargazers_count: 0 },
-  { name: 'RotarAI', description: 'Sitio web con enfoque visual y práctica de estilos personalizados mediante CSS.', language: 'CSS', html_url: 'https://github.com/ValeriaBaltazar19/RotarAI', updated_at: '2025-04-01T00:00:00Z', stargazers_count: 0 }
+  {
+    name: "portafolio-valeria",
+    description: "Portafolio profesional desarrollado como página web personal y práctica de desarrollo frontend.",
+    language: "HTML",
+    html_url: "https://github.com/ValeriaBaltazar19/portafolio-valeria",
+    updated_at: "2026-06-13T00:00:00Z",
+    stargazers_count: 0
+  },
+  {
+    name: "demo_crud_spring",
+    description: "Aplicación orientada a operaciones CRUD para el registro, administración y consulta de información.",
+    language: "HTML",
+    html_url: "https://github.com/ValeriaBaltazar19/demo_crud_spring",
+    updated_at: "2025-10-04T00:00:00Z",
+    stargazers_count: 0
+  },
+  {
+    name: "Bot-Asistente-de-Consultas",
+    description: "Bot desarrollado en Python para automatizar respuestas y ejecutar flujos de consulta.",
+    language: "Python",
+    html_url: "https://github.com/ValeriaBaltazar19/Bot-Asistente-de-Consultas",
+    updated_at: "2025-09-12T00:00:00Z",
+    stargazers_count: 0
+  },
+  {
+    name: "Minimarket",
+    description: "Sistema administrativo desarrollado en C# para apoyar el control de productos y procesos.",
+    language: "C#",
+    html_url: "https://github.com/ValeriaBaltazar19/Minimarket",
+    updated_at: "2025-04-28T00:00:00Z",
+    stargazers_count: 0
+  }
 ];
 
-const descriptions = Object.fromEntries(fallbackRepos.map(repo => [repo.name, repo.description]));
-const projectsGrid = document.getElementById('projectsGrid');
-const navLinks = document.getElementById('navLinks');
-const menuToggle = document.getElementById('menuToggle');
-const themeToggle = document.getElementById('themeToggle');
-const themeIcon = themeToggle?.querySelector('.theme-icon');
-const themeText = themeToggle?.querySelector('.theme-text');
-const year = document.getElementById('year');
+const descriptions = {
+  "portafolio-valeria": "Portafolio profesional desarrollado como página web personal y práctica de desarrollo frontend.",
+  "demo_crud_spring": "Aplicación orientada a operaciones CRUD para el registro, administración y consulta de información.",
+  "Bot-Asistente-de-Consultas": "Bot desarrollado en Python para automatizar respuestas y ejecutar flujos de consulta.",
+  "Minimarket": "Sistema administrativo desarrollado en C# para apoyar el control de productos y procesos.",
+  "Libro": "Proyecto web enfocado en la presentación de contenido y organización visual.",
+  "RotarAI": "Sitio web con enfoque visual y práctica de estilos personalizados mediante CSS."
+};
 
-if (year) year.textContent = new Date().getFullYear();
+const projectsGrid = document.getElementById("projectsGrid");
+const navLinks = document.getElementById("navLinks");
+const menuToggle = document.getElementById("menuToggle");
+const themeToggle = document.getElementById("themeToggle");
+const backToTop = document.getElementById("backToTop");
+const year = document.getElementById("year");
 
-function svgIcon(name) {
-  return `<svg class="svg-icon" aria-hidden="true"><use href="#i-${name}"></use></svg>`;
+if (year) {
+  year.textContent = new Date().getFullYear();
 }
 
+/* ============================= */
+/* MODO CLARO / OSCURO */
+/* ============================= */
+
 function getCurrentTheme() {
-  return document.documentElement.getAttribute('data-theme') || 'light';
+  return document.documentElement.getAttribute("data-theme") || "light";
 }
 
 function updateThemeButton(theme) {
-  const isDark = theme === 'dark';
-  if (themeIcon) themeIcon.textContent = isDark ? '☀️' : '🌙';
-  if (themeText) themeText.textContent = isDark ? 'Claro' : 'Oscuro';
-  themeToggle?.setAttribute('aria-label', isDark ? 'Cambiar a modo claro' : 'Cambiar a modo oscuro');
+  const icon = themeToggle?.querySelector(".theme-icon");
+  const text = themeToggle?.querySelector(".theme-text");
+
+  if (!themeToggle) return;
+
+  if (theme === "dark") {
+    if (icon) icon.textContent = "☀️";
+    if (text) text.textContent = "Claro";
+  } else {
+    if (icon) icon.textContent = "🌙";
+    if (text) text.textContent = "Oscuro";
+  }
 }
 
 function setTheme(theme) {
-  document.documentElement.setAttribute('data-theme', theme);
-  localStorage.setItem('theme', theme);
+  document.documentElement.setAttribute("data-theme", theme);
+  localStorage.setItem("theme", theme);
   updateThemeButton(theme);
 }
 
-updateThemeButton(getCurrentTheme());
+const savedTheme = localStorage.getItem("theme");
+const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+setTheme(savedTheme || (prefersDark ? "dark" : "light"));
 
-themeToggle?.addEventListener('click', () => {
-  setTheme(getCurrentTheme() === 'dark' ? 'light' : 'dark');
+themeToggle?.addEventListener("click", () => {
+  setTheme(getCurrentTheme() === "dark" ? "light" : "dark");
 });
 
-menuToggle?.addEventListener('click', () => {
-  const isOpen = navLinks.classList.toggle('open');
-  menuToggle.classList.toggle('active', isOpen);
-  menuToggle.setAttribute('aria-expanded', String(isOpen));
+/* ============================= */
+/* MENÚ RESPONSIVE */
+/* ============================= */
+
+menuToggle?.addEventListener("click", () => {
+  navLinks?.classList.toggle("open");
+  menuToggle.classList.toggle("active");
 });
 
-document.querySelectorAll('.nav-links a').forEach(link => {
-  link.addEventListener('click', () => {
-    navLinks?.classList.remove('open');
-    menuToggle?.classList.remove('active');
-    menuToggle?.setAttribute('aria-expanded', 'false');
+document.querySelectorAll(".nav-links a").forEach((link) => {
+  link.addEventListener("click", () => {
+    navLinks?.classList.remove("open");
+    menuToggle?.classList.remove("active");
   });
 });
 
-function sanitize(text = '') {
+/* ============================= */
+/* BOTÓN VOLVER AL INICIO */
+/* ============================= */
+
+if (backToTop) {
+  window.addEventListener("scroll", () => {
+    if (window.scrollY > 450) {
+      backToTop.classList.add("show");
+    } else {
+      backToTop.classList.remove("show");
+    }
+  });
+
+  backToTop.addEventListener("click", () => {
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+  });
+}
+
+/* ============================= */
+/* PROYECTOS DESDE GITHUB */
+/* ============================= */
+
+function sanitize(text = "") {
   return String(text)
-    .replaceAll('&', '&amp;')
-    .replaceAll('<', '&lt;')
-    .replaceAll('>', '&gt;')
-    .replaceAll('"', '&quot;')
-    .replaceAll("'", '&#039;');
+    .replaceAll("&", "&amp;")
+    .replaceAll("<", "&lt;")
+    .replaceAll(">", "&gt;")
+    .replaceAll('"', "&quot;")
+    .replaceAll("'", "&#039;");
 }
 
 function formatDate(dateString) {
-  if (!dateString) return 'Sin fecha';
-  return new Intl.DateTimeFormat('es-PE', { year: 'numeric', month: 'short', day: 'numeric' }).format(new Date(dateString));
+  if (!dateString) return "Sin fecha";
+
+  return new Intl.DateTimeFormat("es-PE", {
+    year: "numeric",
+    month: "short",
+    day: "numeric"
+  }).format(new Date(dateString));
 }
 
 function renderRepos(repos) {
   if (!projectsGrid) return;
-  projectsGrid.innerHTML = repos.map((repo, index) => {
-    const description = descriptions[repo.name] || repo.description || 'Repositorio público desarrollado como parte de mi formación y práctica en software.';
-    const language = repo.language || 'Proyecto';
+
+  projectsGrid.innerHTML = repos.map((repo) => {
+    const description = descriptions[repo.name] || repo.description || "Repositorio público desarrollado como parte de mi formación en software.";
+    const language = repo.language || "Proyecto";
+
     return `
-      <article class="project-card reveal visible" style="transition-delay:${Math.min(index * .06, .3)}s">
+      <article class="project-card reveal visible">
         <div class="project-top">
-          <div class="project-title-wrap">
-            <span class="project-icon">${svgIcon('github')}</span>
+          <div>
             <h3>${sanitize(repo.name)}</h3>
+            <span class="language">${sanitize(language)}</span>
           </div>
-          <span class="language">${svgIcon('code')} ${sanitize(language)}</span>
         </div>
+
         <p>${sanitize(description)}</p>
+
         <div class="project-meta">
-          <span>${svgIcon('calendar')} ${formatDate(repo.updated_at)}</span>
-          <span>${svgIcon('star')} ${repo.stargazers_count ?? 0}</span>
+          <span>
+            <svg class="svg-icon"><use href="#icon-calendar"></use></svg>
+            ${formatDate(repo.updated_at)}
+          </span>
+
+          <span>
+            <svg class="svg-icon"><use href="#icon-star"></use></svg>
+            ${repo.stargazers_count ?? 0}
+          </span>
         </div>
+
         <div class="project-actions">
-          <a href="${repo.html_url}" target="_blank" rel="noopener">${svgIcon('external')} Ver código</a>
+          <a href="${repo.html_url}" target="_blank">
+            <svg class="svg-icon"><use href="#icon-external"></use></svg>
+            Código
+          </a>
         </div>
-      </article>`;
-  }).join('');
+      </article>
+    `;
+  }).join("");
 }
 
 async function loadGithubRepos() {
   if (!projectsGrid) return;
+
   try {
     const response = await fetch(`https://api.github.com/users/${GITHUB_USER}/repos?sort=updated&per_page=100`);
-    if (!response.ok) throw new Error('No se pudo conectar con GitHub');
+
+    if (!response.ok) {
+      throw new Error("No se pudo conectar con GitHub");
+    }
+
     const repos = await response.json();
-    const publicRepos = repos.filter(repo => !repo.fork).sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
+    const publicRepos = repos
+      .filter((repo) => !repo.fork)
+      .sort((a, b) => new Date(b.updated_at) - new Date(a.updated_at));
+
     renderRepos(publicRepos.length ? publicRepos : fallbackRepos);
   } catch (error) {
     renderRepos(fallbackRepos);
   }
 }
 
+loadGithubRepos();
+
+/* ============================= */
+/* ANIMACIONES AL HACER SCROLL */
+/* ============================= */
+
 function initRevealAnimations() {
-  const elements = document.querySelectorAll('.reveal');
-  if (!elements.length) return;
-  if (!('IntersectionObserver' in window)) {
-    elements.forEach(el => el.classList.add('visible'));
+  const elements = document.querySelectorAll(".reveal");
+
+  if (!("IntersectionObserver" in window)) {
+    elements.forEach((el) => el.classList.add("visible"));
     return;
   }
+
   const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
+    entries.forEach((entry) => {
       if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
+        entry.target.classList.add("visible");
         observer.unobserve(entry.target);
       }
     });
-  }, { threshold: .14 });
-  elements.forEach(el => observer.observe(el));
+  }, {
+    threshold: 0.16
+  });
+
+  elements.forEach((el) => observer.observe(el));
 }
+
+initRevealAnimations();
+
+/* ============================= */
+/* LINK ACTIVO EN NAVBAR */
+/* ============================= */
 
 function initActiveNav() {
-  const sections = [...document.querySelectorAll('header[id], main section[id]')];
-  const links = [...document.querySelectorAll('.nav-links a')];
-  if (!sections.length || !links.length || !('IntersectionObserver' in window)) return;
-  const map = new Map(links.map(link => [link.getAttribute('href').replace('#',''), link]));
+  const sections = document.querySelectorAll("section[id]");
+  const links = document.querySelectorAll(".nav-links a");
+
+  if (!("IntersectionObserver" in window)) return;
+
   const observer = new IntersectionObserver((entries) => {
-    const visible = entries.filter(e => e.isIntersecting).sort((a,b) => b.intersectionRatio - a.intersectionRatio);
-    if (!visible.length) return;
-    links.forEach(link => link.classList.remove('active'));
-    map.get(visible[0].target.id)?.classList.add('active');
-  }, { rootMargin: '-20% 0px -62% 0px', threshold: [.18, .35, .6] });
-  sections.forEach(section => observer.observe(section));
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        links.forEach((link) => link.classList.remove("active"));
+
+        const activeLink = document.querySelector(`.nav-links a[href="#${entry.target.id}"]`);
+
+        if (activeLink) {
+          activeLink.classList.add("active");
+        }
+      }
+    });
+  }, {
+    rootMargin: "-35% 0px -55% 0px"
+  });
+
+  sections.forEach((section) => observer.observe(section));
 }
 
-loadGithubRepos();
-initRevealAnimations();
 initActiveNav();
