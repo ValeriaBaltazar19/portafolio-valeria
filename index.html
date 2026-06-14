@@ -3,82 +3,36 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>Valeria Baltazar Zapata | Portafolio</title>
   <meta name="description" content="Portafolio profesional de Valeria Baltazar Zapata, desarrolladora de software egresada de SENATI." />
-  <meta name="author" content="Valeria Baltazar Zapata" />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
-
+  <title>Valeria Baltazar Zapata | Desarrolladora de Software</title>
+  <script>
+    (function () {
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.setAttribute("data-theme", savedTheme || (prefersDark ? "dark" : "light"));
+    })();
+  </script>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css" />
   <link rel="icon" type="image/png" href="assets/favicon.png" />
   <link rel="shortcut icon" href="assets/favicon.ico" />
-
-  <link rel="stylesheet" href="css/styles.css" />
 </head>
-
 <body>
-  <!-- ÍCONOS SVG INTERNOS -->
   <svg xmlns="http://www.w3.org/2000/svg" style="display:none">
-    <symbol id="icon-menu" viewBox="0 0 24 24">
-      <path d="M4 7h16M4 12h16M4 17h16" />
-    </symbol>
-
-    <symbol id="icon-close" viewBox="0 0 24 24">
-      <path d="M6 6l12 12M18 6 6 18" />
-    </symbol>
-
-    <symbol id="icon-up" viewBox="0 0 24 24">
-      <path d="M12 5l-7 7m7-7 7 7M12 5v14" />
-    </symbol>
-
-    <symbol id="icon-mail" viewBox="0 0 24 24">
-      <path d="M4 6.5h16v11H4z" />
-      <path d="m4.8 7.3 7.2 5.9 7.2-5.9" />
-    </symbol>
-
-    <symbol id="icon-phone" viewBox="0 0 24 24">
-      <path d="M7.2 4.5 9.5 4c.6-.1 1.2.2 1.4.8l.9 2.5c.2.5 0 1.1-.4 1.4l-1.2.9c1 2.1 2.5 3.6 4.6 4.7l.9-1.2c.3-.4.9-.6 1.4-.4l2.5.9c.6.2.9.8.8 1.4l-.5 2.3c-.1.7-.7 1.2-1.4 1.2C10.8 18.6 5.4 13.2 5.4 6c0-.7.5-1.3 1.2-1.5Z" />
-    </symbol>
-
-    <symbol id="icon-linkedin" viewBox="0 0 24 24">
-      <path d="M6.8 9.8v8.7M6.8 6.1v.1M11 18.5v-8.7M11 13.4c0-2.3 1.4-3.8 3.5-3.8 2.2 0 3.4 1.4 3.4 4v4.9M4 3.8h16v16.4H4z" />
-    </symbol>
-
-    <symbol id="icon-github" viewBox="0 0 24 24">
-      <path d="M12 3.8a8.2 8.2 0 0 0-2.6 16c.4.1.5-.2.5-.4v-1.5c-2.1.5-2.6-.9-2.6-.9-.4-.9-.9-1.1-.9-1.1-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.7-.2-3.5-.9-3.5-3.8 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.8 7.8 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.5 1.1.2 1.9.1 2.1.5.6.8 1.2.8 2.1 0 2.9-1.8 3.6-3.5 3.8.3.2.6.7.6 1.5v2.1c0 .2.1.5.6.4A8.2 8.2 0 0 0 12 3.8Z" />
-    </symbol>
-
-    <symbol id="icon-code" viewBox="0 0 24 24">
-      <path d="m9 8-4 4 4 4M15 8l4 4-4 4M13 5l-2 14" />
-    </symbol>
-
-    <symbol id="icon-graduate" viewBox="0 0 24 24">
-      <path d="M3 8.2 12 4l9 4.2-9 4.2L3 8.2Z" />
-      <path d="M6.8 10.2v4.1c1.4 1.4 3.1 2.1 5.2 2.1s3.8-.7 5.2-2.1v-4.1M20 9v5" />
-    </symbol>
-
-    <symbol id="icon-calendar" viewBox="0 0 24 24">
-      <path d="M6 4v3M18 4v3M4.5 8h15M5 6h14v13H5z" />
-    </symbol>
-
-    <symbol id="icon-star" viewBox="0 0 24 24">
-      <path d="m12 4 2.3 4.7 5.2.8-3.8 3.7.9 5.2-4.6-2.4-4.6 2.4.9-5.2-3.8-3.7 5.2-.8L12 4Z" />
-    </symbol>
-
-    <symbol id="icon-external" viewBox="0 0 24 24">
-      <path d="M14 5h5v5M19 5l-8 8M18 13v6H5V6h6" />
-    </symbol>
-  </svg>
-
-  <div class="site-bg"></div>
-
-  <!-- NAVBAR -->
+  <symbol id="i-arrow-up" viewBox="0 0 24 24"><path d="M12 19V5M5 12l7-7 7 7" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-mail" viewBox="0 0 24 24"><path d="M4 6.5h16v11H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="m4.6 7.2 7.4 6 7.4-6" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-phone" viewBox="0 0 24 24"><path d="M7.1 4.5 9.4 4c.6-.1 1.2.2 1.4.8l.9 2.5c.2.5 0 1.1-.4 1.4l-1.2.9c1 2.1 2.5 3.6 4.6 4.7l.9-1.2c.3-.4.9-.6 1.4-.4l2.5.9c.6.2.9.8.8 1.4l-.5 2.3c-.1.7-.7 1.2-1.4 1.2C10.8 18.6 5.4 13.2 5.4 6c0-.7.5-1.3 1.2-1.5Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-linkedin" viewBox="0 0 24 24"><path d="M6.8 9.8v8.7M6.8 6.1v.1M11 18.5v-8.7M11 13.4c0-2.3 1.4-3.8 3.5-3.8 2.2 0 3.4 1.4 3.4 4v4.9M4 3.8h16v16.4H4z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-github" viewBox="0 0 24 24"><path d="M12 3.8a8.2 8.2 0 0 0-2.6 16c.4.1.5-.2.5-.4v-1.5c-2.1.5-2.6-.9-2.6-.9-.4-.9-.9-1.1-.9-1.1-.7-.5.1-.5.1-.5.8.1 1.2.8 1.2.8.7 1.2 1.9.9 2.3.7.1-.5.3-.9.5-1.1-1.7-.2-3.5-.9-3.5-3.8 0-.9.3-1.6.8-2.1-.1-.2-.4-1 .1-2.1 0 0 .7-.2 2.2.8a7.8 7.8 0 0 1 4 0c1.5-1 2.2-.8 2.2-.8.5 1.1.2 1.9.1 2.1.5.6.8 1.2.8 2.1 0 2.9-1.8 3.6-3.5 3.8.3.2.6.7.6 1.5v2.1c0 .2.1.5.6.4A8.2 8.2 0 0 0 12 3.8Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-code" viewBox="0 0 24 24"><path d="m9 8-4 4 4 4M15 8l4 4-4 4M13 5l-2 14" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+  <symbol id="i-grad" viewBox="0 0 24 24"><path d="M3 8.2 12 4l9 4.2-9 4.2L3 8.2Z" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"/><path d="M6.8 10.2v4.1c1.4 1.4 3.1 2.1 5.2 2.1s3.8-.7 5.2-2.1v-4.1M20 9v5" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></symbol>
+  <symbol id="i-external" viewBox="0 0 24 24"><path d="M14 5h5v5M19 5l-8 8M18 13v6H5V6h6" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
   <header class="topbar">
-    <nav class="navbar section-container">
-      <a href="#inicio" class="logo">Valeria<span>.</span></a>
-
+    <nav class="navbar container" aria-label="Navegación principal">
+      <a href="#inicio" class="brand">Valeria<span>.</span></a>
       <ul class="nav-links" id="navLinks">
         <li><a href="#sobre-mi">Sobre mí</a></li>
         <li><a href="#habilidades">Habilidades</a></li>
@@ -87,107 +41,56 @@
         <li><a href="#cv">CV</a></li>
         <li><a href="#contacto">Contacto</a></li>
       </ul>
-
       <div class="nav-actions">
-        <button class="theme-toggle" id="themeToggle" type="button">
-          <span class="theme-icon">🌙</span>
-          <span class="theme-text">Oscuro</span>
-        </button>
-
-        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú">
-          <svg class="svg-icon"><use href="#icon-menu"></use></svg>
-        </button>
+        <button class="theme-toggle" id="themeToggle" type="button" aria-label="Cambiar modo"><span class="theme-icon">🌙</span><span class="theme-text">Oscuro</span></button>
+        <button class="menu-toggle" id="menuToggle" type="button" aria-label="Abrir menú" aria-expanded="false"><span></span><span></span><span></span></button>
       </div>
     </nav>
   </header>
 
-  <main>
-    <!-- INICIO -->
-    <section class="hero section-container" id="inicio">
+  <main id="inicio">
+    <section class="hero container">
       <div class="hero-content reveal">
         <p class="eyebrow">Portafolio profesional</p>
         <h1>Hola, soy <span>Valeria Baltazar Zapata</span></h1>
-
-        <p class="hero-text">
-          Desarrolladora de software egresada de SENATI, con interés en la creación de soluciones digitales funcionales,
-          bien estructuradas y orientadas a la mejora de procesos. Mi enfoque combina desarrollo web, gestión de datos
-          y construcción de sistemas que respondan a necesidades reales.
-        </p>
-
+        <p class="hero-text">Desarrolladora de software egresada de SENATI, con formación en desarrollo web, programación, bases de datos y construcción de soluciones digitales orientadas a la mejora de procesos.</p>
         <div class="hero-actions">
-          <a href="#proyectos" class="btn primary">Ver proyectos</a>
-          <a href="cv.html" class="btn secondary" target="_blank">CV</a>
+          <a class="btn btn-primary" href="#proyectos">Ver proyectos</a>
+          <a class="btn btn-secondary" href="cv.html" target="_blank" rel="noopener">CV</a>
         </div>
-
         <div class="hero-stats">
-          <div>
-            <strong>SENATI</strong>
-            <span>Egresada de Desarrollo de Software</span>
-          </div>
-          <div>
-            <strong>GitHub</strong>
-            <span>Repositorios públicos y práctica continua</span>
-          </div>
-          <div>
-            <strong>10+</strong>
-            <span>Tecnologías y herramientas</span>
-          </div>
+          <article><strong>SENATI</strong><span>Egresada de Desarrollo de Software</span></article>
+          <article><strong>GitHub</strong><span>Repositorios públicos y práctica continua</span></article>
+          <article><strong>10+</strong><span>Tecnologías y herramientas</span></article>
         </div>
       </div>
-
-      <div class="hero-card reveal">
-        <div class="avatar-wrap">
-          <img src="assets/valeria-headshot.png" alt="Retrato profesional de Valeria Baltazar Zapata" class="avatar" />
-        </div>
-
-        <div class="profile-card">
+      <aside class="hero-card reveal delay-1">
+        <div class="portrait-frame"><img src="assets/valeria.webp" alt="Retrato profesional de Valeria Baltazar Zapata" /></div>
+        <div class="profile-panel">
           <p class="profile-label">Perfil profesional</p>
           <h2>Desarrolladora de Software</h2>
-          <p>Formación técnica en desarrollo web, bases de datos y construcción de soluciones digitales.</p>
-
+          <p>Formación técnica en desarrollo web, bases de datos y soluciones digitales.</p>
           <div class="profile-badges">
-            <span>
-              <svg class="svg-icon"><use href="#icon-graduate"></use></svg>
-              Egresada SENATI
-            </span>
-            <span>
-              <svg class="svg-icon"><use href="#icon-code"></use></svg>
-              Desarrollo Web
-            </span>
+            <span><svg class="svg-icon"><use href="#i-grad"></use></svg> Egresada SENATI</span>
+            <span><svg class="svg-icon"><use href="#i-code"></use></svg> Desarrollo Web</span>
           </div>
         </div>
-      </div>
+      </aside>
     </section>
 
-    <!-- SOBRE MÍ -->
-    <section class="section-container" id="sobre-mi">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Sobre mí</p>
-        <h2>Perfil profesional</h2>
-      </div>
-
+    <section class="section container" id="sobre-mi">
+      <div class="section-heading reveal"><p class="eyebrow">Sobre mí</p><h2>Perfil profesional</h2></div>
       <div class="about-grid">
-        <article class="card large-card reveal">
-          <p>
-            Soy egresada de la carrera de Desarrollo de Software en SENATI, con formación en programación,
-            desarrollo de interfaces, bases de datos y elaboración de soluciones digitales. Me interesa participar
-            en proyectos donde la tecnología contribuya a optimizar procesos, mejorar la organización de la información
-            y ofrecer experiencias útiles para los usuarios.
-          </p>
-
-          <p>
-            Me caracterizo por mantener una forma de trabajo ordenada, responsable y enfocada en el aprendizaje continuo.
-            Busco fortalecer mis competencias técnicas y aportar valor a equipos de trabajo mediante soluciones claras,
-            prácticas y alineadas con objetivos reales.
-          </p>
+        <article class="card reveal">
+          <p>Soy egresada de la carrera de Desarrollo de Software en SENATI, con conocimientos en programación, desarrollo de interfaces, bases de datos y elaboración de sistemas digitales. Me interesa participar en proyectos donde la tecnología permita optimizar procesos, organizar información y mejorar la experiencia del usuario.</p>
+          <p>Me caracterizo por trabajar con responsabilidad, orden y disposición para el aprendizaje continuo. Busco fortalecer mis competencias técnicas y aportar soluciones prácticas, claras y alineadas con objetivos reales.</p>
         </article>
-
-        <aside class="card info-card reveal">
+        <aside class="card info-card reveal delay-1">
           <h3>Información destacada</h3>
           <ul>
             <li><span>Nombre</span><strong>Valeria Baltazar Zapata</strong></li>
             <li><span>Profesión</span><strong>Desarrolladora de Software</strong></li>
-            <li><span>Formación</span><strong>SENATI</strong></li>
+            <li><span>Institución</span><strong>SENATI</strong></li>
             <li><span>Estado académico</span><strong>Egresada</strong></li>
             <li><span>Enfoque</span><strong>Web, datos y sistemas</strong></li>
           </ul>
@@ -195,185 +98,63 @@
       </div>
     </section>
 
-    <!-- HABILIDADES -->
-    <section class="section-container" id="habilidades">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Habilidades</p>
-        <h2>Tecnologías y herramientas</h2>
-      </div>
-
-      <p class="section-description reveal">
-        Tecnologías utilizadas durante mi formación académica y en el desarrollo de proyectos prácticos.
-      </p>
-
+    <section class="section container" id="habilidades">
+      <div class="section-heading reveal"><p class="eyebrow">Habilidades</p><h2>Tecnologías y herramientas</h2></div>
+      <p class="section-description reveal">Tecnologías utilizadas durante mi formación académica y en el desarrollo de proyectos prácticos.</p>
       <div class="skills-grid">
-        <article class="skill-card reveal">
-          <span>01</span>
-          <h3>Frontend</h3>
-          <p>Construcción de interfaces con HTML, CSS y JavaScript, aplicando diseño responsive y navegación clara.</p>
-        </article>
-
-        <article class="skill-card reveal">
-          <span>02</span>
-          <h3>Programación</h3>
-          <p>Desarrollo de lógica y funcionalidades con Python, Java y C#, orientado a soluciones académicas y administrativas.</p>
-        </article>
-
-        <article class="skill-card reveal">
-          <span>03</span>
-          <h3>Bases de datos</h3>
-          <p>Organización y gestión de información mediante MySQL, consultas, registros y control de datos.</p>
-        </article>
-
-        <article class="skill-card reveal">
-          <span>04</span>
-          <h3>Herramientas</h3>
-          <p>Uso de GitHub, Visual Studio Code, Android Studio y documentación técnica para proyectos de software.</p>
-        </article>
+        <article class="skill-card reveal"><span>01</span><h3>Frontend</h3><p>Construcción de interfaces con HTML, CSS y JavaScript, aplicando estructura, diseño responsive y navegación clara.</p></article>
+        <article class="skill-card reveal delay-1"><span>02</span><h3>Programación</h3><p>Desarrollo de lógica y funcionalidades con Python, Java y C#, orientado a soluciones académicas y administrativas.</p></article>
+        <article class="skill-card reveal delay-2"><span>03</span><h3>Bases de datos</h3><p>Gestión de información con MySQL, consultas, registros y organización de datos.</p></article>
+        <article class="skill-card reveal delay-3"><span>04</span><h3>Herramientas</h3><p>Uso de GitHub, Visual Studio Code, Android Studio y documentación técnica para organizar proyectos.</p></article>
       </div>
-
       <div class="tech-grid reveal">
-        <span><b>HTML</b> HTML</span>
-        <span><b>CSS</b> CSS</span>
-        <span><b>JS</b> JavaScript</span>
-        <span><b>PY</b> Python</span>
-        <span><b>JAVA</b> Java</span>
-        <span><b>C#</b> C#</span>
-        <span><b>SQL</b> MySQL</span>
-        <span><b>AND</b> Android Studio</span>
-        <span><b>GIT</b> GitHub</span>
-        <span><b>VS</b> VS Code</span>
+        <span><b>HTML</b>HTML</span><span><b>CSS</b>CSS</span><span><b>JS</b>JavaScript</span><span><b>PY</b>Python</span><span><b>JAVA</b>Java</span><span><b>C#</b>C#</span><span><b>SQL</b>MySQL</span><span><b>AND</b>Android Studio</span><span><b>GIT</b>GitHub</span><span><b>VS</b>VS Code</span>
       </div>
     </section>
 
-    <!-- EXPERIENCIA -->
-    <section class="section-container" id="experiencia">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Trayectoria</p>
-        <h2>Formación y orientación profesional</h2>
-      </div>
-
+    <section class="section container" id="experiencia">
+      <div class="section-heading reveal"><p class="eyebrow">Trayectoria</p><h2>Formación y orientación profesional</h2></div>
       <div class="timeline">
-        <article class="timeline-item reveal">
-          <span class="timeline-dot"></span>
-          <div>
-            <h3>Desarrollo de Software — Egresada</h3>
-            <p class="timeline-meta">SENATI</p>
-            <p>Formación técnica orientada al análisis, desarrollo e implementación de soluciones informáticas.</p>
-          </div>
-        </article>
-
-        <article class="timeline-item reveal">
-          <span class="timeline-dot"></span>
-          <div>
-            <h3>Proyectos académicos y prácticos</h3>
-            <p class="timeline-meta">Web · Sistemas · Gestión de datos</p>
-            <p>Participación en proyectos enfocados en interfaces, sistemas administrativos y organización de información.</p>
-          </div>
-        </article>
-
-        <article class="timeline-item reveal">
-          <span class="timeline-dot"></span>
-          <div>
-            <h3>Meta profesional</h3>
-            <p class="timeline-meta">Mejora continua</p>
-            <p>Continuar fortaleciendo mis competencias técnicas y aportar soluciones útiles en entornos profesionales reales.</p>
-          </div>
-        </article>
+        <article class="timeline-item reveal"><span class="timeline-dot"></span><div><h3>Desarrollo de Software — Egresada</h3><p class="timeline-meta">SENATI</p><p>Formación técnica orientada al análisis, desarrollo e implementación de soluciones informáticas.</p></div></article>
+        <article class="timeline-item reveal delay-1"><span class="timeline-dot"></span><div><h3>Proyectos académicos y prácticos</h3><p class="timeline-meta">Web · Sistemas · Gestión de datos</p><p>Elaboración de proyectos enfocados en interfaces, sistemas administrativos, automatización y organización de información.</p></div></article>
+        <article class="timeline-item reveal delay-2"><span class="timeline-dot"></span><div><h3>Meta profesional</h3><p class="timeline-meta">Mejora continua</p><p>Seguir fortaleciendo mis competencias técnicas y aportar soluciones útiles en entornos profesionales reales.</p></div></article>
       </div>
     </section>
 
-    <!-- PROYECTOS -->
-    <section class="section-container" id="proyectos">
+    <section class="section container" id="proyectos">
       <div class="section-heading projects-heading reveal">
-        <div>
-          <p class="eyebrow">GitHub</p>
-          <h2>Proyectos destacados</h2>
-        </div>
-
-        <a href="https://github.com/ValeriaBaltazar19" class="github-link" target="_blank">
-          Ver GitHub
-        </a>
+        <div><p class="eyebrow">GitHub</p><h2>Proyectos destacados</h2></div>
+        <a class="github-link" href="https://github.com/ValeriaBaltazar19" target="_blank" rel="noopener">Ver GitHub <svg class="svg-icon"><use href="#i-external"></use></svg></a>
       </div>
-
-      <p class="section-description reveal">
-        Esta sección se conecta con mi cuenta de GitHub para mostrar automáticamente mis repositorios públicos.
-      </p>
-
-      <div class="projects-grid" id="projectsGrid">
-        <p class="loading-text">Cargando proyectos desde GitHub...</p>
-      </div>
+      <p class="section-description reveal">Esta sección muestra automáticamente mis repositorios públicos de GitHub. Si no hay conexión, se cargan proyectos de respaldo incluidos en el portafolio.</p>
+      <div class="projects-grid" id="projectsGrid"><p class="loading-text">Cargando proyectos desde GitHub...</p></div>
     </section>
 
-    <!-- CV -->
-    <section class="section-container" id="cv">
+    <section class="section container" id="cv">
       <div class="cv-card reveal">
-        <div>
-          <p class="eyebrow">Currículum</p>
-          <h2>CV profesional</h2>
-          <p>
-            He incluido una versión web de mi CV con información resumida sobre formación, habilidades técnicas,
-            proyectos y datos de contacto. Puedes abrirlo y guardarlo como PDF.
-          </p>
-        </div>
-
-        <div class="cv-actions">
-          <a href="cv.html" class="btn primary" target="_blank">CV</a>
-          <a href="mailto:valerializethbaltazarzapata@gmail.com" class="btn secondary">Enviar correo</a>
-        </div>
+        <div><p class="eyebrow">Currículum</p><h2>CV profesional</h2><p>Versión web de mi currículum con información resumida sobre formación, habilidades técnicas, proyectos y datos de contacto.</p></div>
+        <div class="cv-actions"><a class="btn btn-primary" href="cv.html" target="_blank" rel="noopener">CV</a><a class="btn btn-secondary" href="mailto:valerializethbaltazarzapata@gmail.com">Enviar correo</a></div>
       </div>
     </section>
 
-    <!-- CONTACTO -->
-    <section class="section-container" id="contacto">
-      <div class="section-heading reveal">
-        <p class="eyebrow">Contacto</p>
-        <h2>Información de contacto</h2>
-      </div>
-
+    <section class="section container" id="contacto">
+      <div class="section-heading reveal"><p class="eyebrow">Contacto</p><h2>Información de contacto</h2></div>
       <div class="contact-grid">
-        <article class="card contact-card reveal">
-          <h3>Disponible para oportunidades y colaboración</h3>
-          <p>
-            Puedes comunicarte conmigo para oportunidades laborales, prácticas, colaboración en proyectos
-            o consultas profesionales.
-          </p>
-        </article>
-
-        <article class="card contact-card reveal">
+        <article class="card reveal"><h3>Disponible para oportunidades y colaboración</h3><p>Puedes comunicarte conmigo para oportunidades laborales, prácticas, colaboración en proyectos o consultas profesionales relacionadas con desarrollo de software.</p></article>
+        <article class="card reveal delay-1">
           <ul class="contact-list">
-            <li>
-              <svg class="svg-icon"><use href="#icon-mail"></use></svg>
-              <a href="mailto:valerializethbaltazarzapata@gmail.com">valerializethbaltazarzapata@gmail.com</a>
-            </li>
-            <li>
-              <svg class="svg-icon"><use href="#icon-phone"></use></svg>
-              <a href="tel:+51970477100">970 477 100</a>
-            </li>
-            <li>
-              <svg class="svg-icon"><use href="#icon-linkedin"></use></svg>
-              <a href="https://www.linkedin.com/in/valeria-baltazar-zapata-20b527378/" target="_blank">LinkedIn</a>
-            </li>
-            <li>
-              <svg class="svg-icon"><use href="#icon-github"></use></svg>
-              <a href="https://github.com/ValeriaBaltazar19" target="_blank">GitHub</a>
-            </li>
+            <li><svg class="svg-icon"><use href="#i-mail"></use></svg><a href="mailto:valerializethbaltazarzapata@gmail.com">valerializethbaltazarzapata@gmail.com</a></li>
+            <li><svg class="svg-icon"><use href="#i-phone"></use></svg><a href="tel:+51970477100">970 477 100</a></li>
+            <li><svg class="svg-icon"><use href="#i-linkedin"></use></svg><a href="https://www.linkedin.com/in/valeria-baltazar-zapata-20b527378/" target="_blank" rel="noopener">LinkedIn</a></li>
+            <li><svg class="svg-icon"><use href="#i-github"></use></svg><a href="https://github.com/ValeriaBaltazar19" target="_blank" rel="noopener">GitHub</a></li>
           </ul>
         </article>
       </div>
     </section>
   </main>
 
-  <footer class="footer">
-    <p>© <span id="year"></span> Valeria Baltazar Zapata. Portafolio profesional.</p>
-  </footer>
-
-  <button class="back-to-top" id="backToTop" type="button" aria-label="Volver al inicio">
-    <svg viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 5l-7 7m7-7 7 7M12 5v14" />
-    </svg>
-  </button>
-
+  <button class="back-to-top" id="backToTop" type="button" aria-label="Volver al inicio"><svg class="svg-icon"><use href="#i-arrow-up"></use></svg></button>
+  <footer class="footer"><p>© <span id="year"></span> Valeria Baltazar Zapata. Portafolio profesional.</p></footer>
   <script src="js/script.js"></script>
 </body>
 </html>
